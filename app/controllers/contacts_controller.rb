@@ -14,10 +14,10 @@ class ContactsController < ApplicationController
             
             ContactMailer.contact_email(name, email, body).deliver 
                 
-            render[:success] = 'Message sent up up and away!'
+            flash[:success] = 'Message sent up up and away!'
             redirect_to new_contact_path
-            elsif
-                render[:danger] = 'Oh no, the lights are not on!'
+            else
+                flash[:danger] = 'Oh no, the lights are not on!'
                 redirect_to new_contact_path
             end
     end
