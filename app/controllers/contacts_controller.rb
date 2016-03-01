@@ -8,8 +8,14 @@ class ContactsController < ApplicationController
             
             
             if @contact.save 
-                flash[:success] = 'Message sent up up and away!'
-                redirect_to new_contact_path
+            name = params[:contact][:name]
+            email = params[:contact][:email]
+            body = params[:contact][:comments]
+            
+            ContactMailer.contact_email(name, email, body).deliver 
+                
+            flash[:success] = 'Message sent up up and away!'
+            redirect_to new_contact_path
             else
                 flash[:danger] = 'Oh no, the lights are not on!'
                 redirect_to new_contact_path
