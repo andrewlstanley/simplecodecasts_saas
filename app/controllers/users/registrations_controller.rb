@@ -1,4 +1,4 @@
-class Users: :RegistrationsController < Devise: :RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
    before_filter :select_plan, only: :new 
   
    def create
